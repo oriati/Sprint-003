@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <button @click='isComposing=true' class="composer">Compose</button>
+    <button @click='isComposing=true; isSelected=false' class="composer">Compose</button>
     <div class="email__wrapper">
       <div class="email__container">
         <email-list :emails="emails" class="email__list" @selectEmail="selectedEmailId"></email-list>

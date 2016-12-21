@@ -1,7 +1,7 @@
 <template>
     <section>
         <form>
-            <div class="form-group" onsubmit="return false">
+            <div class="form-group">
                 <label for="adress">Send To</label>
                 <input type="email" class="form-control" id="adress" aria-describedby="email-adress" placeholder="Adress">
             </div>
@@ -17,7 +17,11 @@
                 <label for="Attachments">Attach A File</label>
                 <input type="file" class="form-control-file" id="Attachments" aria-describedby="email-attach">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button         
+                type="submit"
+                @click.prevent="submitted = true"
+                class="btn btn-primary">Send</button>
+
         </form>
     </section>
 
