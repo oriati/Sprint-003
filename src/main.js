@@ -11,6 +11,8 @@ const myRouter = new VueRouter({routes: myRoutes, mode: 'history'})
 
 Vue.http.options.root = 'http://localhost:3003';
 
+window.bus = new Vue();
+
 new Vue({
   router : myRouter,
   el: '#app',
