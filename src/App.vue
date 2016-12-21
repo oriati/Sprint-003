@@ -2,7 +2,7 @@
   <div id="app">
     <header>
       <div class="container">
-        <a href="/"><h1>My App</h1></a>
+        <router-link to="/" active-class="active" exact><h1>My App</h1></router-link>
         <!--<nav>
         <router-link to="/email" active-class="active" exact>Emails</router-link> |
         <router-link to="/event" active-class="active">Events</router-link> |
@@ -36,8 +36,7 @@ export default {
     MainNav
   },
   created() {
-    bus.$on('hideNav', console.log('Im HHHEEEEETRRRRRRRR!!!!!!!')
-    // ...
+    bus.$on('toggleNav', bool=> this.showNav=bool);
   }
 }
 </script>

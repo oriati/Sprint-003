@@ -2,11 +2,14 @@
   <section>
 
     <h1>HOME</h1>
+    <main-nav></main-nav>
+
 
   </section>
 </template>
 
 <script>
+import MainNav from '../components/main-nav.vue';
 export default {
   name: 'name',
   data () {
@@ -15,8 +18,10 @@ export default {
     }
   },
   mounted() {
-      console.log('Im here');
-      bus.$emit('hideNav');
+      bus.$emit('toggleNav', false);
+  },
+  components: {
+    MainNav
   }
 }
 </script>
