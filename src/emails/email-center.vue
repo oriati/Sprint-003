@@ -1,9 +1,11 @@
 <template>
   <div id="app">
+    <button @click='isComposing=true' class="composer">Compose</button>
     <div class="email__wrapper">
       <div class="email__container">
         <email-list :emails="emails" class="email__list" @selectEmail="selectedEmailId"></email-list>
-        <email-details v-if="emailPicked" class="email__details" :email="seletedEmail" @deleteEmail="deletedEmailID"></email-details>
+        <email-details v-if="isSelected" class="email__details" :email="seletedEmail" @deleteEmail="deletedEmailID"></email-details>
+        <email-composer v-if="isComposing" class="email__Composer" ></email-composer>
       </div>
       <email-status :unreadEmailsNum="unreadEmailsNum" :emailsNum="emailsNum"></email-status>
     </div>
@@ -12,9 +14,10 @@
 
 <script>
 
-import EmailDetails from './email/email-details.vue';
-import EmailList from './email/email-list.vue';
-import EmailStatus from './email/email-status.vue';
+import EmailDetails from './email-details.vue';
+import EmailList from './email-list.vue';
+import EmailStatus from './email-status.vue';
+import EmailComposer from './email-composer.vue';
 
 export default {
   name: 'app',
@@ -29,7 +32,8 @@ export default {
         {id: 6, subject: 'mail6', body: 'rjyrjj vns.ktehl/in ldvinoidnv lnehtdvn', isRead: false}
       ],
       seletedEmail: null,
-      emailPicked: true
+      isSelected: true,
+      isComposing: false
     }
   },
   computed: {
@@ -41,20 +45,27 @@ export default {
     }
   },
   methods: {
+    composeMail() {
+      console.log('gone composing');
+      
+      // let newMail = {
+      //   id: getNextId(), subject:'', body:'', isRead: false  
+    },
     selectedEmailId(selectedEmailId) {
       this.seletedEmail = this.emails.filter(email => selectedEmailId === email.id)[0];
       this.seletedEmail.isRead = true;
-      if (this.seletedEmail.id) this.emailPicked = true;
+      if (this.seletedEmail.id) this.isSelected = true;
     }, 
     deletedEmailID(deletedEmailID) {
-      this.emailPicked = false;
+      this.isSelected = false;
       this.emails = this.emails.filter(email => deletedEmailID !== email.id);
     }
   },
   components: {
     EmailDetails,
     EmailList,
-    EmailStatus
+    EmailStatus,
+    EmailComposer
   },
   created() {
     this.seletedEmail = this.emails[0];
@@ -90,5 +101,8 @@ export default {
 
   button {
     cursor: pointer;
+  }
+  .composer{
+    left: 0;
   }
 </style>

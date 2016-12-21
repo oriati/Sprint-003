@@ -1,13 +1,13 @@
 <template>
   <div class="emails__status">
     {{unreadEmailsNum}} / {{emailsNum}} Emails read
-    <progress-bar :precentage = "precentage"></progress-bar>
+    <!--<progress-bar :precentage = "precentage"></progress-bar>-->
   </div>
 </template>
 
 <script>
 
-import ProgressBar from './../components/progress-bar.vue';
+// import ProgressBar from '../components/progress-bar.vue';
 
 export default {
   props: ['unreadEmailsNum', 'emailsNum'],
@@ -19,10 +19,10 @@ export default {
     precentage: function () {
       return this.precentage = parseInt((this.unreadEmailsNum / this.emailsNum) * 100)
     }
-  },
-  components: {
-    ProgressBar
   }
+  // components: {
+  //   ProgressBar
+  // }
 }
 </script>
 
