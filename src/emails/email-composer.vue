@@ -1,7 +1,7 @@
 <template>
     <section>
         <form>
-            <div class="form-group">
+            <div class="form-group" onsubmit="return false">
                 <label for="adress">Send To</label>
                 <input type="email" class="form-control" id="adress" aria-describedby="email-adress" placeholder="Adress">
             </div>
