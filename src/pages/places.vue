@@ -13,6 +13,9 @@ export default {
     return {
       
     }
+  },
+  mounted() {
+      bus.$emit('toggleNav', true);
   }
 }
 </script>
