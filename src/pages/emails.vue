@@ -20,10 +20,7 @@ export default {
   },
   components: {
     emailCenter
-    },
-  mounted() {
-      bus.$emit('toggleNav', true);
-  }
+    }
 }
 </script>
 
