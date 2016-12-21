@@ -13,6 +13,10 @@ export default {
     return {
       
     }
+  },
+  mounted() {
+      console.log('Im here');
+      bus.$emit('hideNav');
   }
 }
 </script>

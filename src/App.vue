@@ -2,49 +2,60 @@
   <div id="app">
     <header>
       <div class="container">
-      <h1>My App</h1>
-      <nav>
-        <!--For using bootstrap nav add: tag="li"-->
+        <a href="/"><h1>My App</h1></a>
+        <!--<nav>
         <router-link to="/email" active-class="active" exact>Emails</router-link> |
         <router-link to="/event" active-class="active">Events</router-link> |
         <router-link to="/place" active-class="active">Places</router-link>
-      </nav>
+      </nav>-->
+        <main-nav v-if="showNav"></main-nav>
       </div>
     </header>
-    <main  class="container">
-      <router-view></router-view>
+    <main class="container">
+      <router-view @hideNav="showNav=false"></router-view>
     </main>
 
-    <footer> 
+    <footer>
       <div class="container">
-      coffeerights &copy; 2016 Asi & Ori
+        coffeerights &copy; 2016 Asi & Ori
       </div>
     </footer>
   </div>
 </template>
 
 <script>
+import MainNav from './components/main-nav.vue';
 export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      showNav: true
     }
+  },
+  components: {
+    MainNav
+  },
+  created() {
+    bus.$on('hideNav', console.log('Im HHHEEEEETRRRRRRRR!!!!!!!')
+    // ...
   }
 }
 </script>
 
 <style>
-body {
-  margin: 0;
-}
+  body {
+    margin: 0;
+  }
+  
   header {
     background: lightcoral;
     padding: 20px;
   }
+  
   main {
     padding: 20px;
   }
+  
   footer {
     background: lightgreen;
     position: fixed;
@@ -52,18 +63,20 @@ body {
     bottom: 0;
     padding: 20px;
   }
-
-h1 {
-  margin: 0;
-}
-    #app {
-      font-family: 'Avenir', Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-align: center;
-      color: #2c3e50;
-    }  
-  .container  {
+  
+  h1 {
+    margin: 0;
+  }
+  
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
+  
+  .container {
     max-width: 960px;
     margin: 0 auto;
   }
