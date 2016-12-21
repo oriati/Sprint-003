@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <header>
+      <div class="container">
       <h1>My App</h1>
       <nav>
         <!--For using bootstrap nav add: tag="li"-->
@@ -8,12 +9,16 @@
         <router-link to="/event" active-class="active">Events</router-link> |
         <router-link to="/place" active-class="active">Places</router-link>
       </nav>
+      </div>
     </header>
+    <main  class="container">
+      <router-view></router-view>
+    </main>
 
-    <router-view></router-view>
-
-    <footer>
-      coffeerights &copy; 2016
+    <footer> 
+      <div class="container">
+      coffeerights &copy; 2016 Asi & Ori
+      </div>
     </footer>
   </div>
 </template>
@@ -30,31 +35,36 @@ export default {
 </script>
 
 <style>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+body {
+  margin: 0;
+}
+  header {
+    background: lightcoral;
+    padding: 20px;
   }
-  
-  h1,
-  h2 {
-    font-weight: normal;
+  main {
+    padding: 20px;
   }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
+  footer {
+    background: lightgreen;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    padding: 20px;
   }
-  
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-  
-  a {
-    color: #42b983;
+
+h1 {
+  margin: 0;
+}
+    #app {
+      font-family: 'Avenir', Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+      color: #2c3e50;
+    }  
+  .container  {
+    max-width: 960px;
+    margin: 0 auto;
   }
 </style>
