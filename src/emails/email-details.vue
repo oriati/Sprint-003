@@ -28,4 +28,7 @@ export default {
   .email__details {
     padding: 10px;
   }
+  h1{
+    padding:10px;
+  }
 </style>
