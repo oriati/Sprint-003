@@ -1,11 +1,14 @@
 <template>
   <div id="app">
-    <button @click='isComposing=true' class="composer">Compose</button>
+    <button @click='isComposing=true ; isSelected=false' class="composer">Compose</button>
     <div class="email__wrapper">
       <div class="email__container">
         <email-list :emails="emails" class="email__list" @selectEmail="selectedEmailId"></email-list>
         <email-details v-if="isSelected" class="email__details" :email="seletedEmail" @deleteEmail="deletedEmailID"></email-details>
-        <email-composer v-if="isComposing" class="email__Composer" ></email-composer>
+        <email-composer 
+          v-if="isComposing" class="email__Composer"
+          @sendMail="sendMail"
+           ></email-composer>
       </div>
       <email-status :unreadEmailsNum="unreadEmailsNum" :emailsNum="emailsNum"></email-status>
     </div>
@@ -31,9 +34,11 @@ export default {
         {id: 5, subject: 'mail5', body: 'jjj ns.khteethldvl/in ldvinoidnv lndvn', isRead: false},
         {id: 6, subject: 'mail6', body: 'rjyrjj vns.ktehl/in ldvinoidnv lnehtdvn', isRead: false}
       ],
+      // state:{
       seletedEmail: null,
       isSelected: true,
       isComposing: false
+    // }
     }
   },
   computed: {
@@ -45,12 +50,19 @@ export default {
     }
   },
   methods: {
-    composeMail() {
-      console.log('gone composing');
-      
-      // let newMail = {
-      //   id: getNextId(), subject:'', body:'', isRead: false  
+    sendMail(newMail){
+      newMail.id = this.getNextId(newMail);
+      this.emails.push(newMail);
+      console.log('sending mail', newMail);
+      this.isComposing = false;
     },
+    getNextId(mail){
+      let maxId = 0;
+      this.emails.forEach(mail => {
+        if (mail.id > maxId) maxId=mail.id;
+      });
+      return maxId+1;
+    },  
     selectedEmailId(selectedEmailId) {
       this.seletedEmail = this.emails.filter(email => selectedEmailId === email.id)[0];
       this.seletedEmail.isRead = true;
