@@ -31,7 +31,7 @@ export default {
   },
   filters: {
     fullDate: function (date) {
-      return moment(date).format('DD/MM YYYY');
+      return moment(date).format('HH:mm');
     }
   }
 }

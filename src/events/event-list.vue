@@ -1,12 +1,15 @@
 <template>
-  <div class="events">
-    <div v-for="date in events">
-      {{date}}
+  <section>
+    <div v-for="(arr, date) in events">
+      <h2>{{date}}</h2>
+      <div class="events">
+        <div v-for="event in arr" class="event" @click="$emit('selectEvent', event.id)">
+          <event-preview :event="event"></event-preview>
+        </div>
+      </div>
     </div>
-    <!--<div v-for="event in events" class="event" @click="$emit('selectEvent', event.id)">
-      <event-preview :event="event"></event-preview>
-    </div>-->
-  </ul>
+  </div>
+  </section>
 </template>
 
 <script>
@@ -16,7 +19,7 @@ import EventPreview from './event-preview.vue';
 export default {
   props: {
     events: {
-      type: Array
+      type: Object
     }
   },
   data () {
