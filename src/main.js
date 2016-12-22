@@ -13,6 +13,11 @@ const myRouter = new VueRouter({routes: myRoutes, mode: 'history'})
 Vue.http.options.root = 'http://localhost:3003';
 
 window.bus = new Vue();
+Vue.mixin({
+  created: function () {
+    bus.$emit('toggleNav', true);
+  }
+})
 
 new Vue({
   router : myRouter,

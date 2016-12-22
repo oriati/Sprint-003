@@ -2,11 +2,15 @@
   <section>
 
     <h1>EVENTS</h1>
+    <event-center></event-center>
 
   </section>
 </template>
 
 <script>
+
+import EventCenter from '../events/event-center.vue';
+
 export default {
   name: 'name',
   data () {
@@ -14,8 +18,8 @@ export default {
       
     }
   },
-  mounted() {
-      bus.$emit('toggleNav', true);
+  components: {
+    EventCenter
   }
 }
 </script>

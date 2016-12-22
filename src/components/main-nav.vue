@@ -17,5 +17,7 @@ export default {
 </script>
 
 <style scoped>
-  
+  .active {
+    background: lightgreen;
+  }
 </style>
