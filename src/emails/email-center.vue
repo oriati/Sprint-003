@@ -1,11 +1,12 @@
 <template>
   <div id="app">
+    <email-filter :emails="emails"></email-filter>
     <button @click='isComposing=true; isSelected=false' class="composer">Compose</button>
     <div class="email__wrapper">
       <div class="email__container">
-        <email-list :emails="emails" class="email__list" @selectEmail="selectedEmailId"></email-list>
+        <email-list :emails="emails" class="email__list" @selectEmail="selectedEmailId">need to bind email to render instead of emails</email-list>
         <email-details v-if="isSelected" class="email__details" :email="seletedEmail" @deleteEmail="deletedEmailID"></email-details>
-        <email-composer v-if="isComposing" class="email__Composer" ></email-composer>
+        <email-composer v-if="isComposing" class="email__Composer" @sendMail='sendMail'></email-composer>
       </div>
       <email-status :unreadEmailsNum="unreadEmailsNum" :emailsNum="emailsNum"></email-status>
     </div>
@@ -18,6 +19,7 @@ import EmailDetails from './email-details.vue';
 import EmailList from './email-list.vue';
 import EmailStatus from './email-status.vue';
 import EmailComposer from './email-composer.vue';
+import EmailFilter from './email-filter.vue';
 
 export default {
   name: 'app',
@@ -45,11 +47,23 @@ export default {
     }
   },
   methods: {
+    sendMail(newMail) {
+      newMail.id = this.getNextId(newMail);
+      console.log('email sent', newMail); 
+      newMail.isRead = false;
+      this.emails.push(newMail);
+      this.isComposing = false;
+    },
+    getNextId(mail){
+      let maxId = 0;
+      this.emails.forEach(mail => {
+        maxId = (mail.id > maxId)?  mail.id : maxId;
+      });
+      return maxId+1;
+    },
+
     composeMail() {
       console.log('gone composing');
-      
-      // let newMail = {
-      //   id: getNextId(), subject:'', body:'', isRead: false  
     },
     selectedEmailId(selectedEmailId) {
       this.seletedEmail = this.emails.filter(email => selectedEmailId === email.id)[0];
@@ -65,7 +79,8 @@ export default {
     EmailDetails,
     EmailList,
     EmailStatus,
-    EmailComposer
+    EmailComposer,
+    EmailFilter
   },
   created() {
     this.seletedEmail = this.emails[0];
