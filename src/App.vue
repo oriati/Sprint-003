@@ -3,6 +3,11 @@
     <header>
       <div class="container">
         <router-link to="/" active-class="active" exact><h1>My App</h1></router-link>
+                <!--<nav>
+        <router-link to="/email" active-class="active" exact>Emails</router-link> |
+        <router-link to="/event" active-class="active">Events</router-link> |
+        <router-link to="/place" active-class="active">Places</router-link>
+      </nav>-->
         <main-nav v-if="showNav"></main-nav>
       </div>
     </header>
@@ -56,6 +61,7 @@ export default {
     position: fixed;
     width: 100%;
     bottom: 0;
+    padding: 20px;
     height: 60px;
     line-height: 60px;
   }
