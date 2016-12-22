@@ -25,6 +25,8 @@ export default {
   name: 'app',
   data () {
     return {
+        emails :[],
+        // this.emails.$http.get(email).then(res=>.......)
       emails: [
         {id: 1, subject: 'mail1', body: 'uuheh vtehethns.kdjvnldvl/in ldvinoidnv lndvn', isRead: false},
         {id: 2, subject: 'mail2', body: 'heheht vns.kdjvnthehheethethoidnv lndvn', isRead: false},
@@ -47,6 +49,10 @@ export default {
     }
   },
   methods: {
+    // getEmails(){
+    //   this.emails.$http.get(email).then(res=>.......)
+
+    // }
     sendMail(newMail) {
       newMail.id = this.getNextId(newMail);
       console.log('email sent', newMail); 
@@ -60,10 +66,6 @@ export default {
         maxId = (mail.id > maxId)?  mail.id : maxId;
       });
       return maxId+1;
-    },
-
-    composeMail() {
-      console.log('gone composing');
     },
     selectedEmailId(selectedEmailId) {
       this.seletedEmail = this.emails.filter(email => selectedEmailId === email.id)[0];
