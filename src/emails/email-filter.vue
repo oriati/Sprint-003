@@ -1,6 +1,7 @@
 <template>
     <section>
         <input type="text" v-model="filterText">
+        {{filteredMails}}
     </section>
 </template>
 
@@ -15,14 +16,10 @@
         data (){
             return {
                 filterText: '',
-                
-
             }
         },
         computed : {
-            // test () {
-            // return this.filterText},
-            filteredMails () { 
+           filteredMails () { 
                 const regex = new RegExp(this.filterText, 'i');
                 return this.emails.filter(mail => mail.subject.match(regex) || mail.body.match(regex));
             }
