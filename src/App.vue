@@ -3,7 +3,7 @@
     <header>
       <div class="container">
         <router-link to="/" active-class="active" exact><h1>My App</h1></router-link>
-        <!--<nav>
+                <!--<nav>
         <router-link to="/email" active-class="active" exact>Emails</router-link> |
         <router-link to="/event" active-class="active">Events</router-link> |
         <router-link to="/place" active-class="active">Places</router-link>
@@ -44,6 +44,7 @@ export default {
 <style>
   body {
     margin: 0;
+    margin-bottom: 60px;
   }
   
   header {
@@ -61,6 +62,8 @@ export default {
     width: 100%;
     bottom: 0;
     padding: 20px;
+    height: 60px;
+    line-height: 60px;
   }
   
   h1 {

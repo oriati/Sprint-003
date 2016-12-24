@@ -22,7 +22,12 @@ export default {
 </script>
 
 <style scoped>
-  .email__details {
+  /*.email__details {
     padding: 10px;
+  }*/
+  .progress-bar {
+    background-color: white;
+    border-radius: 5px;
+    /*color: white;*/
   }
 </style>
