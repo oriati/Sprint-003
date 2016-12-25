@@ -1,6 +1,6 @@
 <template>
   <section>
-    <event-list :events="eventsGroupedDisplay"></event-list>
+    <event-list :events="eventsGroupedDisplay" @selectEvent="readEvent"></event-list>
   </section>
 </template>
 
@@ -13,13 +13,13 @@ export default {
   name: 'app',
   data () {
     return {
-      events: eventsData.events,
+      events: {events:[]},
     }
   },
   computed: {
 
     eventsGroupedDisplay() {
-      return this.events.reduce((obj , event) => {
+      return this.events.events.reduce((obj , event) => {
         let date = moment(event.time).format('DD/MM YYYY');
         if (obj[date]) {
           obj[date].push(event);
@@ -32,7 +32,17 @@ export default {
     
   },
   methods: {
-    
+    reloadEvents() {
+      this.$http.get('events')
+        .then(res=> res.json())
+        .then(eventsFromServer => this.events = eventsFromServer)
+    },
+    readEvent(eventId) {
+      console.log('about to read Event ' , eventId);
+    } 
+  },
+  created() {
+    this.reloadEvents();
   },
   components: {
     EventList
