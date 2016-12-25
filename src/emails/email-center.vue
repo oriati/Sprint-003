@@ -1,24 +1,12 @@
 <template>
   <div id="app">
-<<<<<<< HEAD
-    <button @click='isComposing=true ; isSelected=false' class="composer">Compose</button>
-    <div class="email__wrapper">
-      <div class="email__container">
-        <email-list :emails="emails" class="email__list" @selectEmail="selectedEmailId"></email-list>
-        <email-details v-if="isSelected" class="email__details" :email="seletedEmail" @deleteEmail="deletedEmailID"></email-details>
-        <email-composer 
-          v-if="isComposing" class="email__Composer"
-          @sendMail="sendMail"
-           ></email-composer>
-=======
     <email-filter :emails="emails"></email-filter>
     <button @click='isComposing=true; isSelected=false' class="composer">Compose</button>
     <div class="email__wrapper">
       <div class="email__container">
-        <email-list :emails="emails" class="email__list" @selectEmail="selectedEmailId">need to bind 'email to render' instead of emails</email-list>
+        <email-list :emails="emails" class="email__list" @selectEmail="selectEmail">need to bind 'email to render' instead of emails</email-list>
         <email-details v-if="isSelected" class="email__details" :email="selectedEmail" @deleteEmail="deletedEmailID"></email-details>
         <email-composer v-if="isComposing" class="email__Composer" @sendMail='sendMail'></email-composer>
->>>>>>> 0bcda62398b78d10864a8a09579154bf282c1a93
       </div>
       <email-status :unreadEmailsNum="unreadEmailsNum" :emailsNum="emailsNum"></email-status>
     </div>
@@ -37,19 +25,6 @@ export default {
   name: 'app',
   data () {
     return {
-<<<<<<< HEAD
-      emails: [
-        {id: 1, subject: 'mail1', body: 'uuheh vtehethns.kdjvnldvl/in ldvinoidnv lndvn', isRead: false},
-        {id: 2, subject: 'mail2', body: 'heheht vns.kdjvnthehheethethoidnv lndvn', isRead: false},
-        {id: 3, subject: 'mail3', body: '88jjjrjvns.ehttehjvnldvl/inehtethnoidnv lndvn', isRead: false},
-        {id: 4, subject: 'mail4', body: 'aqhhjrjjvns.kdjvnehehvl/in ldvinoidnv lndvn', isRead: false},
-        {id: 5, subject: 'mail5', body: 'jjj ns.khteethldvl/in ldvinoidnv lndvn', isRead: false},
-        {id: 6, subject: 'mail6', body: 'rjyrjj vns.ktehl/in ldvinoidnv lnehtdvn', isRead: false}
-      ],
-      // state:{
-      seletedEmail: null,
-      isSelected: true,
-=======
       emails: [], 
       //   {id: 1, subject: 'mail1', body: 'uuheh vtehethns.kdjvnldvl/in ldvinoidnv lndvn', isRead: false},
       //   {id: 2, subject: 'mail2', body: 'heheht vns.kdjvnthehheethethoidnv lndvn', isRead: false},
@@ -60,9 +35,7 @@ export default {
       // ],
       selectedEmail: null,
       isSelected: false,
->>>>>>> 0bcda62398b78d10864a8a09579154bf282c1a93
       isComposing: false
-    // }
     }
   },
   computed: {
@@ -74,13 +47,6 @@ export default {
     }
   },
   methods: {
-<<<<<<< HEAD
-    sendMail(newMail){
-      newMail.id = this.getNextId(newMail);
-      this.emails.push(newMail);
-      console.log('sending mail', newMail);
-      this.isComposing = false;
-=======
     reloadEmails(){
       this.$http.get('email')
         .then(res=> res.json())
@@ -89,6 +55,7 @@ export default {
 
     },
     sendMail(newMail) {
+      this.$http.post( `item`)
       newMail.id = this.getNextId(newMail);
       console.log('email sent', newMail); 
       newMail.isRead = false;
@@ -101,23 +68,17 @@ export default {
         maxId = (mail.id > maxId)?  mail.id : maxId;
       });
       return maxId+1;
->>>>>>> 0bcda62398b78d10864a8a09579154bf282c1a93
-    },
-    getNextId(mail){
-      let maxId = 0;
-      this.emails.forEach(mail => {
-        if (mail.id > maxId) maxId=mail.id;
-      });
-      return maxId+1;
     },  
-    selectedEmailId(selectedEmailId) {
-      this.selectedEmail = this.emails.filter(email => selectedEmailId === email.id)[0];
+    selectEmail(emailId) {
+      this.$http.get(`email/${emailId}`);
+      this.selectedEmail = this.emails.filter(email => emailId === email.id)[0];
       this.selectedEmail.isRead = true;
       if (this.selectedEmail.id) this.isSelected = true;
     }, 
-    deletedEmailID(deletedEmailID) {
+    deletedEmailID(emailId) {
+      this.$http.delete(`email/${emailId}`);
       this.isSelected = false;
-      this.emails = this.emails.filter(email => deletedEmailID !== email.id);
+      this.emails = this.emails.filter(email => emailId !== email.id);
     }
   },
   components: {
@@ -128,6 +89,7 @@ export default {
     EmailFilter
   },
   created() {
+
     this.reloadEmails();
   }
 }

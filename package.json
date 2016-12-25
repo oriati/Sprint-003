@@ -10,10 +10,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
-<<<<<<< HEAD
-=======
     "moment": "^2.17.1",
->>>>>>> 0bcda62398b78d10864a8a09579154bf282c1a93
     "vue": "^2.1.0",
     "vue-resource": "^1.0.3",
     "vue-router": "^2.1.1"
