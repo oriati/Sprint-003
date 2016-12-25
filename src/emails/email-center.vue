@@ -89,7 +89,6 @@ export default {
     EmailFilter
   },
   created() {
-
     this.reloadEmails();
   }
 }
