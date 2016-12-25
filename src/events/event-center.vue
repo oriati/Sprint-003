@@ -1,5 +1,6 @@
 <template>
   <section>
+    <div class="events__controls"><button @click="editEvent">Add Event</button></div>
     <event-list :events="eventsGroupedDisplay" @selectEvent="readEvent"></event-list>
   </section>
 </template>
@@ -39,6 +40,9 @@ export default {
     },
     readEvent(eventId) {
       this.$router.push(`/event/${eventId}`);
+    },
+    editEvent() {
+      this.$router.push(`/event/edit`);
     }
   },
   created() {

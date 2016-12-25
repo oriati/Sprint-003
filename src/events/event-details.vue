@@ -20,6 +20,7 @@
         },
         methods: {
             loadEvent(eventId) {
+                
                 this.$http.get(`event/${eventId}`)
                     .then(res => res.json())
                     .then(event => this.event = event);
