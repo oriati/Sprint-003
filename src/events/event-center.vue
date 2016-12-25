@@ -38,8 +38,8 @@ export default {
         .then(eventsFromServer => this.events = eventsFromServer)
     },
     readEvent(eventId) {
-      console.log('about to read Event ' , eventId);
-    } 
+      this.$router.push(`/event/${eventId}`);
+    }
   },
   created() {
     this.reloadEvents();
