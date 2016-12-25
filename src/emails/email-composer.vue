@@ -23,12 +23,14 @@
                 class="btn btn-primary">Send</button>
 
         </form>
+        <!--adress : {{newMail.adress}}
+        subject : {{newMail.subject}}
+        body : {{newMail.body}}-->
     </section>
 
 </template>
 
 <script>
-
     export default {
         data() {
             return {

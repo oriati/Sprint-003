@@ -4,7 +4,7 @@
     <button @click='isComposing=true; isSelected=false' class="composer">Compose</button>
     <div class="email__wrapper">
       <div class="email__container">
-        <email-list :emails="emails" class="email__list" @selectEmail="selectedEmailId">need to bind 'email to render' instead of emails</email-list>
+        <email-list :emails="emails" class="email__list" @selectEmail="selectEmail">need to bind 'email to render' instead of emails</email-list>
         <email-details v-if="isSelected" class="email__details" :email="selectedEmail" @deleteEmail="deletedEmailID"></email-details>
         <email-composer v-if="isComposing" class="email__Composer" @sendMail='sendMail'></email-composer>
       </div>
@@ -55,6 +55,7 @@ export default {
 
     },
     sendMail(newMail) {
+      this.$http.post( `item`)
       newMail.id = this.getNextId(newMail);
       console.log('email sent', newMail); 
       newMail.isRead = false;
@@ -67,15 +68,17 @@ export default {
         maxId = (mail.id > maxId)?  mail.id : maxId;
       });
       return maxId+1;
-    },
-    selectedEmailId(selectedEmailId) {
-      this.selectedEmail = this.emails.filter(email => selectedEmailId === email.id)[0];
+    },  
+    selectEmail(emailId) {
+      this.$http.get(`email/${emailId}`);
+      this.selectedEmail = this.emails.filter(email => emailId === email.id)[0];
       this.selectedEmail.isRead = true;
       if (this.selectedEmail.id) this.isSelected = true;
     }, 
-    deletedEmailID(deletedEmailID) {
+    deletedEmailID(emailId) {
+      this.$http.delete(`email/${emailId}`);
       this.isSelected = false;
-      this.emails = this.emails.filter(email => deletedEmailID !== email.id);
+      this.emails = this.emails.filter(email => emailId !== email.id);
     }
   },
   components: {
@@ -86,6 +89,7 @@ export default {
     EmailFilter
   },
   created() {
+
     this.reloadEmails();
   }
 }
