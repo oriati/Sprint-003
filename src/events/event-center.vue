@@ -1,6 +1,9 @@
 <template>
   <section>
-    <div class="events__controls"><button @click="editEvent">Add Event</button></div>
+    <div class="events__controls">
+      <email-filter @filterChanged="emailFilter = $event"></email-filter>
+      <button @click="editEvent">Add Event</button>
+    </div>
     <event-list :events="eventsGroupedDisplay" @selectEvent="readEvent"></event-list>
   </section>
 </template>
@@ -8,6 +11,7 @@
 <script>
 import moment from "moment";
 import EventList from './event-list.vue';
+import EmailFilter from '../components/filter.vue';
 import eventsData from '../eventsData';
 
 export default {
@@ -49,7 +53,8 @@ export default {
     this.reloadEvents();
   },
   components: {
-    EventList
+    EventList,
+    EmailFilter
   }
 }
 </script>

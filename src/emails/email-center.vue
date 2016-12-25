@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <email-filter :emails="emails"></email-filter>
+    <email-filter @filterChanged="emailFilter = $event"></email-filter>
     <button @click='isComposing=true; isSelected=false' class="composer">Compose</button>
     <div class="email__wrapper">
       <div class="email__container">
-        <email-list :emails="emails" class="email__list" @selectEmail="selectEmail">need to bind 'email to render' instead of emails</email-list>
+        <email-list :emails="emailsToDisplay" class="email__list" @selectEmail="selectEmail">need to bind 'email to render' instead of emails</email-list>
         <email-details v-if="isSelected" class="email__details" :email="selectedEmail" @deleteEmail="deletedEmailID"></email-details>
         <email-composer v-if="isComposing" class="email__Composer" @sendMail='sendMail'></email-composer>
       </div>
@@ -19,31 +19,30 @@ import EmailDetails from './email-details.vue';
 import EmailList from './email-list.vue';
 import EmailStatus from './email-status.vue';
 import EmailComposer from './email-composer.vue';
-import EmailFilter from './email-filter.vue';
+import EmailFilter from '../components/filter.vue';
 
 export default {
   name: 'app',
   data () {
     return {
-      emails: [], 
-      //   {id: 1, subject: 'mail1', body: 'uuheh vtehethns.kdjvnldvl/in ldvinoidnv lndvn', isRead: false},
-      //   {id: 2, subject: 'mail2', body: 'heheht vns.kdjvnthehheethethoidnv lndvn', isRead: false},
-      //   {id: 3, subject: 'mail3', body: '88jjjrjvns.ehttehjvnldvl/inehtethnoidnv lndvn', isRead: false},
-      //   {id: 4, subject: 'mail4', body: 'aqhhjrjjvns.kdjvnehehvl/in ldvinoidnv lndvn', isRead: false},
-      //   {id: 5, subject: 'mail5', body: 'jjj ns.khteethldvl/in ldvinoidnv lndvn', isRead: false},
-      //   {id: 6, subject: 'mail6', body: 'rjyrjj vns.ktehl/in ldvinoidnv lnehtdvn', isRead: false}
-      // ],
+      emails: [],
       selectedEmail: null,
       isSelected: false,
-      isComposing: false
+      isComposing: false,
+      emailFilter: {subject: ''}
     }
   },
   computed: {
-    emailsNum: function() {
+    emailsNum() {
       return this.emailsNum = this.emails.length;
     },
-    unreadEmailsNum: function() {
+    unreadEmailsNum() {
       return this.emails.filter(email => email.isRead).length;
+    },
+    emailsToDisplay() {
+        const regex = new RegExp(this.emailFilter.subject, 'i');
+        let filteredArr =  this.emails.filter(mail => mail.subject.match(regex) || mail.body.match(regex));
+        return this.emails.filter(mail => mail.subject.match(regex) || mail.body.match(regex));
     }
   },
   methods: {
@@ -79,6 +78,9 @@ export default {
       this.$http.delete(`email/${emailId}`);
       this.isSelected = false;
       this.emails = this.emails.filter(email => emailId !== email.id);
+    },
+    filterMails(filteredArr) {
+
     }
   },
   components: {
@@ -119,11 +121,12 @@ export default {
   * {
     box-sizing: border-box;
   }
-
+  
   button {
     cursor: pointer;
   }
-  .composer{
+  
+  .composer {
     left: 0;
   }
 </style>
