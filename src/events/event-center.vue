@@ -19,12 +19,21 @@ export default {
   data () {
     return {
       events: {events:[]},
+      emailFilter: {subject: ''}
     }
   },
   computed: {
 
+
+
     eventsGroupedDisplay() {
-      return this.events.events.reduce((obj , event) => {
+
+      //Filtering the Events Arr according to filters
+      const regex = new RegExp(this.emailFilter.subject, 'i');
+      let filteredArr =  this.events.events.filter(event => event.description.match(regex) || event.name.match(regex));
+
+      //Grouping the Events according to Date
+      return filteredArr.reduce((obj , event) => {
         let date = moment(event.time).format('DD/MM YYYY');
         if (obj[date]) {
           obj[date].push(event);

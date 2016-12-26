@@ -13,7 +13,6 @@
         },
         methods: {
             emitFilter() {
-                console.log('keypressed');
                 this.$emit('filterChanged', this.filter);
             }
         }
