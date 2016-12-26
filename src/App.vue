@@ -42,9 +42,28 @@ export default {
 </script>
 
 <style>
+
+
+/*----------  Open Source Font  ----------*/
+
+  html, body {
+    height: 100%;
+  }
+
   body {
     margin: 0;
     margin-bottom: 60px;
+    background: url('./assets/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  #app {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
   }
   
   header {
@@ -68,14 +87,6 @@ export default {
   
   h1 {
     margin: 0;
-  }
-  
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
   }
   
   .container {
