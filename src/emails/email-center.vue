@@ -109,12 +109,13 @@ export default {
   }
   
   .email__list {
-    width: 150px;
-    background: pink;
+    width: 290px;
+    background: #627b55;
+    padding: 24px 0;
   }
   
   .email__details {
-    width: calc(100% - 150px);
+    width: calc(100% - 290px);
     background: red;
   }
   

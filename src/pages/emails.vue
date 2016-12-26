@@ -1,8 +1,7 @@
 <template>
   <section>
-
-    <h1>EMAILS</h1>
-    <div>
+    <div class="email-container">
+    <header><h1>my Mail</h1></header>
       <email-center></email-center>
     </div>
 
@@ -24,5 +23,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.email-container {
+  background: rgba(224, 217, 207, 0.51);
+}
 </style>

@@ -31,19 +31,16 @@ export default {
 
 .emails {
   margin: 0;
-  padding: 0;
   list-style: none;
 }
 
 .email {
-  padding: 10px;
   cursor: pointer;
   border-bottom: 1px solid #999;
-  font-weight: bold;
-}
-
-.email:last-child {
-  border: none;
+  background: #fff;
+  line-height: 35px;
+  font-size: 0.8rem;
+  padding: 0 24px;
 }
 
 .email:hover {
@@ -51,7 +48,7 @@ export default {
 }
 
 .read {
-  font-weight: normal;
+  background: #d0d8cc;
 }
 
 </style>

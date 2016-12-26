@@ -2,12 +2,10 @@
   <div id="app">
     <header>
       <div class="container">
-        <router-link to="/" active-class="active" exact><h1>My App</h1></router-link>
-                <!--<nav>
-        <router-link to="/email" active-class="active" exact>Emails</router-link> |
-        <router-link to="/event" active-class="active">Events</router-link> |
-        <router-link to="/place" active-class="active">Places</router-link>
-      </nav>-->
+        <router-link to="/" active-class="active" exact>
+        <h1>Lighthouse</h1>
+        <h2> - showing you the way</h2>
+        </router-link>
         <main-nav v-if="showNav"></main-nav>
       </div>
     </header>
@@ -16,9 +14,7 @@
     </main>
 
     <footer>
-      <div class="container">
         coffeerights &copy; 2016 Asi & Ori
-      </div>
     </footer>
   </div>
 </template>
@@ -52,7 +48,7 @@ export default {
 
   body {
     margin: 0;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     background: url('./assets/bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -62,27 +58,79 @@ export default {
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
+    color: #525d4c;
+  }
+
+  h1, h2 {
+    font-weight: normal;
+  }
+  h2 {
+    font-size: 1.2em;
+  }
+
+  a {
+    color: #7ba963;
+    text-decoration: none;
   }
   
   header {
-    background: lightcoral;
-    padding: 20px;
+    background: #1d211b;
+    height: 80px;
+    line-height: 80px;
+    color: #fff;
+  }
+
+  header a {
+    color: #fff;
+  }
+
+  header a:hover {
+    color: #de8b28;
+  }
+
+  header .container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  header .main-nav__link:after {
+    content: " | ";
+    color: #fff;
+  }
+
+  header .main-nav__link:last-child:after {
+    content: "";
+  }
+
+  header .main-nav__link:hover {
+    color: #7ba963;
+  }
+
+  header h1, header h2 {
+    display: inline;
+  }
+
+  main header {
+    height: 40px;
+    line-height: 40px;
+    font-size: 0.7em;
+    padding: 0 24px;
   }
   
-  main {
-    padding: 20px;
+  main.container {
+    padding: 60px 24px 24px;
   }
   
   footer {
-    background: lightgreen;
+    background: #3e453a;
     position: fixed;
     width: 100%;
     bottom: 0;
-    padding: 20px;
-    height: 60px;
-    line-height: 60px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    font-size: 0.7em;
+    padding: 0 24px;
   }
   
   h1 {
@@ -90,7 +138,8 @@ export default {
   }
   
   .container {
-    max-width: 960px;
+    max-width: 972px;
     margin: 0 auto;
+    padding: 0 24px;
   }
 </style>
