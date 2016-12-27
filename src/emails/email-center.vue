@@ -12,7 +12,7 @@
     </div>
   </div>
 </template>
-v
+
 <script>
 
 import EmailDetails from './email-details.vue';
