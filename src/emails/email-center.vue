@@ -49,17 +49,24 @@ export default {
     reloadEmails(){
       this.$http.get('email')
         .then(res=> res.json())
-        .then(emails => this.emails = emails)
-        .then(this.selectedEmail = this.emails[0]);
+        .then(emails => {
+          this.emails = emails;
+          this.selectedEmail = this.emails[0];
+          this.isSelected = true;
+        })
+        // .then(this.selectedEmail = this.emails[0])
+      
 
     },
     sendMail(newMail) {
-      this.$http.post( `item`)
-      newMail.id = this.getNextId(newMail);
-      console.log('email sent', newMail); 
       newMail.isRead = false;
+      newMail.id = this.getNextId(newMail);
+      console.log('email', newMail); 
+      this.$http.post('email', newMail)
+      .then(console.log('email sent', newMail)); 
       this.emails.push(newMail);
       this.isComposing = false;
+
     },
     getNextId(mail){
       let maxId = 0;

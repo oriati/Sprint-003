@@ -13,10 +13,10 @@
                 <label>Your Massage</label>
                 <textarea class="form-control" v-model="newMail.body" rows="3"></textarea>
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label>Attach A File</label>
                 <input type="file" class="form-control-file" v-on:change="newMail.files" aria-describedby="email-attach">
-            </div>
+            </div>-->
             <button         
                 type="submit"
                 @click.prevent="isSubmitted = true; $emit('sendMail', newMail)"
