@@ -7,13 +7,17 @@
 </template>
 
 <script>
+import placesCenter from '../places/places-center.vue'
 export default {
   name: 'name',
   data () {
     return {
       
     }
-  }
+  },
+  components: {
+    placesCenter
+    }
 }
 </script>
 
