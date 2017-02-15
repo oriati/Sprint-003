@@ -4,7 +4,7 @@
 
 ## Build Setup
 
-# install dependencie
+# install dependencies
 ``
 npm install
 ``
