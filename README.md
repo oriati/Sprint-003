@@ -1,6 +1,7 @@
 # my-app
 
 > A Vue.js project - an orginizer app
+
 > run together with sprint 3 server (see repo)
 
 ## Build Setup
